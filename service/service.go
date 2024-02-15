@@ -2,7 +2,6 @@ package service
 
 import (
 	"email-cleaner/token"
-	"fmt"
 	"log"
 
 	"google.golang.org/api/gmail/v1"
@@ -21,17 +20,18 @@ func ListMessId() []*gmail.Message {
 	return messages.Messages
 }
 
-func GetHeader(id string) error {
+func GetSender(id string) string {
 	mess, err := srv.Users.Messages.Get(user, id).Do()
 	if err != nil {
 		log.Fatalf("Error to get header: ", err)
-		return err
 	}
 	headers := mess.Payload.Headers
 	for _, header := range headers {
-		fmt.Println(header.Name, header.Value)
+		if header.Name == "From"{
+			return header.Value
+		}
 	}
-	return nil
+	return ""
 }
 
 func DeleteMess(id string) error {
