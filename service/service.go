@@ -34,6 +34,11 @@ func GetHeader(id string) error {
 	return nil
 }
 
-func DeleteMess(id string) {
-	srv.Users.Messages.Delete(user, id).Do()
+func DeleteMess(id string) error {
+	err := srv.Users.Messages.Delete(user, id).Do()
+	if err != nil{
+		log.Println("Error while deleting email: ", err)
+		return err
+	}
+	return nil
 }
