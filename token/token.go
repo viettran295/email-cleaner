@@ -30,7 +30,7 @@ func getClient(config *oauth2.Config) *http.Client {
 
 // Request a token from the web, then returns the retrieved token.
 func getTokenFromWeb(config *oauth2.Config) *oauth2.Token {
-	authURL := config.AuthCodeURL("state-token", oauth2.AccessTypeOffline, oauth2.SetAuthURLParam("prompt", "consent"), oauth2.SetAuthURLParam("access_type", "offline"), oauth2.SetAuthURLParam("scope", "https://www.googleapis.com/auth/gmail.modify"))
+	authURL := config.AuthCodeURL("state-token", oauth2.AccessTypeOffline)
 	fmt.Printf("Go to the following link in your browser then type the "+
 		"authorization code: \n%v\n", authURL)
 
@@ -77,7 +77,7 @@ func NewService() *gmail.Service {
 	}
 
 	// If modifyin9c751dafd1e3g these scopes, delete your previously saved token.json.
-	config, err := google.ConfigFromJSON(b, gmail.GmailReadonlyScope)
+	config, err := google.ConfigFromJSON(b, gmail.MailGoogleComScope)
 	if err != nil {
 		log.Fatalf("Unable to parse client secret file to config: %v", err)
 	}
