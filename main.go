@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	deleteEmails := []string{"WallStreetJournal@em.dowjones.com", "newsletter@email.blockchain.com",
+	deleteEmails := []string{"WallStreetJournal@em.dowjones.com", "newsletter@email.blockchain.com", "jobs-noreply@linkedin.com",
 		"service@mailer.scalable.capital", "service@mailer.scalable.capital", "messages-noreply@linkedin.com", "linkedin@e.linkedin.com",
 		"updates-noreply@linkedin.com", "notifications-noreply@linkedin.com", "invitations@linkedin.com", "no-reply@mail.goodreads.com",
 		"webform@altium.com", "noreply@medium.com", "info@info.vietcombank.com.vn", "st@newsletter.st.com", "st@event.st.com",
@@ -21,14 +21,14 @@ func main() {
 		"vietnam@seao.crm.samsung.com", "service@info.misterspex.de", "replies@oracle-mail.com", "MITx_OL@mit.edu", "michaelpage@mail.michaelpage.de",
 		"team@m.ngrok.com", "hello@knog.com.au", "hello@mail.blinkist.com", "promotion5@amazon.de", "offers@m.myunidays.com", "success@gitkraken.com",
 		"german-personalized-digest@quora.com", "appstore@insideapple.apple.com", "do_not_reply@mailersp1.binance.com", "study@constructor.university",
-		"noreply@huobi.ug", "no-reply@leetcode.com", "microsoft.start@email2.microsoft.com", "info@simplize.vn"}
+		"noreply@huobi.ug", "no-reply@leetcode.com", "microsoft.start@email2.microsoft.com", "info@simplize.vn", "cskh@abs.vn", "vietpride295@gmail.com"}
 
 	for {
 		mess := service.ListMessId()
 		for _, msg := range mess {
 			sender := service.GetSender(msg.Id)
 			if utils.ContainString(deleteEmails, sender) == true {
-				service.DeleteMess(msg.Id)
+				go service.DeleteMess(msg.Id)
 				log.Println("Deleted sender: ", sender)
 			}
 		}
