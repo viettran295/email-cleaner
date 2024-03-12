@@ -24,7 +24,8 @@ func main() {
 		"noreply@huobi.ug", "no-reply@leetcode.com", "microsoft.start@email2.microsoft.com", "info@simplize.vn", "cskh@abs.vn", "vietpride295@gmail.com",
 		"apply@42heilbronn.de", "noreply@immobilienscout24.de", "do-not-reply@wohnungshelden.de", "noreply@meinverein.de", "promotions@bambooairways.com",
 		"st@information.st.com", "hello@taptapsend.os.tc", "info@glassdoor.com", "newsletter@email.n26.com", "thy@mail.turkishairlines.com", "no-reply@grab.com",
-		"hello@udacity.com", "no-reply@mail.wandb.ai",}
+		"hello@udacity.com", "no-reply@mail.wandb.ai", "account-security-noreply@accountprotection.microsoft.com", "aws-marketing-email-replies@amazon.com",
+		"service@service.scalable.capital", "cskh@abs.vn"}
 
 	for {
 		mess := service.ListMessId()
@@ -35,6 +36,6 @@ func main() {
 				log.Println("Deleted sender: ", sender)
 			}
 		}
-		time.Sleep(12 * time.Hour)
+		time.Sleep(6 * time.Hour)
 	}
 }
