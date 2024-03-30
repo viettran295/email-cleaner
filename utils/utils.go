@@ -4,8 +4,8 @@ import "strings"
 
 func ContainString(arr []string, str string) bool {
 	str = trimSenderValue(str)
-	for _, i := range arr {
-		if i == str {
+	for _, substr := range arr {
+		if strings.Contains(str, substr){
 			return true
 		}
 	}
