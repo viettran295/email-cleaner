@@ -34,11 +34,11 @@ func GetSender(id string) string {
 	return ""
 }
 
-func DeleteMess(id string) error {
-	err := srv.Users.Messages.Delete(user, id).Do()
+func DeleteMess(id string) (*gmail.Message, error)  {
+	resp, err := srv.Users.Messages.Trash(user, id).Do()
 	if err != nil{
 		log.Println("Error while deleting email: ", err)
-		return err
+		return resp, err
 	}
-	return nil
+	return resp, nil
 }
