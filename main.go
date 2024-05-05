@@ -21,13 +21,20 @@ func main() {
 		"english-personalized-digest@quora.com", "support@anvil.works", "gopro@e-mail.gopro.com", "Xbox@engage.xbox.com", "IRBCG@bamboocap.com.vn",
 		"Info@bambooairways.com", "lavanyashukla@wandb.com", "gdpr@email.hays.com"}
 
+	deletedMess := 0
 	for {
 		mess := service.ListMessId()
 		for _, msg := range mess {
-			sender := service.GetSender(msg.Id)
-			if utils.ContainString(deleteEmails, sender) == true {
-				go service.DeleteMess(msg.Id)
-				log.Println("Trashed sender: ", sender)
+			if deletedMess == 40{
+				deletedMess = 0
+				break
+			} else {
+				sender := service.GetSender(msg.Id)
+				if utils.ContainString(deleteEmails, sender) == true {
+					deletedMess++
+					go service.DeleteMess(msg.Id)
+					log.Println("Trashed sender: ", sender)
+				}
 			}
 		}
 		time.Sleep(12 * time.Hour)

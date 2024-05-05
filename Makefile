@@ -1,5 +1,5 @@
 APP_NAME = email-cleaner
-VM_DIR = ~/Desktop/Dev/OracleVM
+VM_DIR = ~/Desktop/Dev/cloudVM
 
 build:
 	go mod download && go mod verify
